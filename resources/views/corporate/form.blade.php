@@ -1,27 +1,51 @@
+
 <div class="modal-body">
     @csrf
-    <div class="form-group">
-        {{ Form::label('Industry name: *', null, ['class' => 'label text-black']) }}
-        {!! Form::text('name', $industry->name ?? '', ['class' => 'form-control', 'name' => 'name', 'id' => 'name', 'placeholder' => 'Industry name']) !!}
-        <span class="md-line text-danger" id="name_error"></span>
+  <div class="form-row mb-4">
+     <div class="form-group col-md-12">
+         {!! Form::label('Corporate Name:') !!}
+         {!! Form::text('corporate_name', $corporate->corporate_name ?? '', ['class' => 'form-control']) !!}
+         
+     </div>
+      <div class="form-group col-md-12">
+         {!! Form::label('Phone No:') !!}
+         {!! Form::text('phone_no', $corporate->phone_no ?? '', ['class' => 'form-control']) !!}
+        
+     </div>
+     <div class="form-group col-md-12">
+        {{ Form::label('Email: *', null, ['class' => 'label text-black']) }}
+        {!! Form::text('email', $corporate->email?? '', ['class' => 'form-control', 'name' => 'email', 'id' => 'email']) !!}
+
     </div>
-    <div class="form-group">
-        {{ Form::label('Icon: ', null, ['class' => 'label text-black']) }}
-        {!! Form::file('icon', ['class' => 'form-control', 'id' => 'icon']) !!}
-        <span class="md-line text-danger" id="icon_error"></span>
+    <div class="form-group col-md-12">
+        {{ Form::label('Password: *', null, ['class' => 'label text-black']) }}
+        {!! Form::text('password', $corporate->password?? '', ['class' => 'form-control', 'name' => 'password', 'id' => 'password']) !!}
+
     </div>
-    <div class="form-group banner">
-        {{ Form::label('Image: ', null, ['class' => 'label text-black']) }}
-        {!! Form::file('banner', ['class' => 'form-control', 'id' => 'banner']) !!}
-        <span class="md-line text-danger" id="banner_error"></span>
+    <div class="form-group col-md-12">
+        {{ Form::label('Confirm Password: *', null, ['class' => 'label text-black']) }}
+        {!! Form::text('confirm_password', $corporate->confirm_password?? '', ['class' => 'form-control', 'name' => 'confirm_password', 'id' => 'confirm_password']) !!}
+
     </div>
-    <div class="form-group thumb">
-        {{ Form::label('Thumb: ', null, ['class' => 'label text-black']) }}
-        {!! Form::file('thumb', ['class' => 'form-control', 'id' => 'thumb']) !!}
-        <span class="md-line text-danger" id="thumb_error"></span>
+    <div class="form-group col-md-12">
+          {!! Form::label('Company Name:') !!}
+         {!! Form::text('company_name', $corporate->company_name ?? '', ['class' => 'form-control']) !!}
+         
+     </div>
+   
+     
+      <div class="form-group col-md-12">
+          {!! Form::label('Company Address:') !!}
+         {!! Form::text('company_address', $corporate->company_address ?? '', ['class' => 'form-control']) !!}
+        
+     </div>
+     
+
+
     </div>
-</div>
-<div class="modal-footer">
+    </div>
+ <div class="modal-footer">
     <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
-    {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_industry']) !!}
+    {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_corporate']) !!}
 </div>
+

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    {{ 'Subject - Corporate' }}
+    {{ 'Subject - Product' }}
 @endsection
 @section('content')
   <!-- DataTables -->
@@ -12,13 +12,13 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h4 class="text-themecolor">Corporate</h4>
+                    <h4 class="text-themecolor">Product</h4>
                 </div> 
                 <div class="col-md-7 align-self-end text-right">
                     <div class="d-flex mt-4 justify-content-end align-items-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Corporate</li>
+                            <li class="breadcrumb-item active">Product</li>
                         </ol>
 
 
@@ -31,9 +31,9 @@
                     <!-- Zero config.table start -->
                     <div class="card">
                         <div class="card-header bg-white modal-header d-block">
-                            <h1 class="h3 mb-0 text-gray-800 float-left">Corporate</h1>
+                            <h1 class="h3 mb-0 text-gray-800 float-left">Product</h1>
                             <a type="button" href="javascript:void(0);" class="btn float-right btn-primary btn-modal waves-effect waves-light"
-                                data-href="{{ action('App\Http\Controllers\Corporate\CorporateController@create') }}"
+                                data-href="{{ action('App\Http\Controllers\Product\ProductController@create') }}"
                                 data-container="#ajax_modal" style="color:#fff!important;">
                                 <i class="fa fa-plus"></i> Add
                             </a>                           
@@ -44,8 +44,8 @@
                                 <table id="data_table" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th >Corporate Name</th>
-                                            <th >Phone Number</th>
+                                            <th >Product Name</th>
+                                            <th >Product Price</th>
                                             <th >Action</th>
                                         </tr>
                                     </thead>
@@ -69,12 +69,12 @@
 <script>
     var columns= [
         {
-            data: 'corporate_name',
-            name: 'corporate_name'
+            data: 'product_name',
+            name: 'product_name'
         },
         {
-            data: 'phone_no',
-            name: 'phone_no'
+            data: 'product_price',
+            name: 'product_price'
         },
         {
             data: 'action',

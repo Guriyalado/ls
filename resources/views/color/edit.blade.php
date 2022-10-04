@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    {{ 'Subject - Retailer' }}
+    {{ 'Subject - Color' }}
 @endsection
 @section('content')
   <!-- DataTables -->
@@ -12,14 +12,14 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h4 class="text-themecolor">Retailer</h4>
+                    <h4 class="text-themecolor">Color</h4>
                 </div> 
                 <div class="col-md-7 align-self-end text-right">
                     <div class="d-flex mt-4 justify-content-end align-items-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('retailer.index') }}">Retailer</a></li>
-                            <li class="breadcrumb-item active">Edit Retailer</li>
+                            <li class="breadcrumb-item"><a href="{{ route('color.index') }}">Color</a></li>
+                            <li class="breadcrumb-item active">Edit Color</li>
                         </ol>
 
 
@@ -32,54 +32,52 @@
                     <!-- Zero config.table start -->
                     <div class="card">
                         <div class="card-header bg-white modal-header d-block">
-                            <h1 class="h3 mb-0 text-gray-800 float-left">Edit Retailer</h1>
+                            <h1 class="h3 mb-0 text-gray-800 float-left">Edit Color</h1>
                             <a type="button" href="javascript:void(0);" class="btn float-right btn-primary btn-modal waves-effect waves-light"
-                                href="{{ route('retailer.index') }}"
+                                href="{{ route('color.index') }}"
                                 data-container="#ajax_modal" style="color:#fff!important;">
                                 <i class="fa fa-arrow-left"></i> Back
                             </a>                           
                                                           
                         </div>
-                        {!! Form::open(['url' => action('App\Http\Controllers\Retailer\RetailerController@update', [$retailer->id]), 'method' => 'PUT', 'id' => 'ajax_form',  'enctype' => 'multipart/form-data' ]) !!}
+                        {!! Form::open(['url' => action('App\Http\Controllers\Color\ColorController@update', [$color->id]), 'method' => 'PUT', 'id' => 'ajax_form',  'enctype' => 'multipart/form-data' ]) !!}
                             
                             <div class="card-body">
                                 @php
                                     $form = 'edit';
                                 @endphp
                                 @csrf
-                                <div class="form-group">
-                                    {{ Form::label('Retailer name: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('retailer_name', $retailer->retailer_name ?? '', ['class' => 'form-control', 'name' => 'name', 'id' => 'name', 'placeholder' => 'Retailer name']) !!}
-                                    <span class="md-line text-danger" id="name_error"></span>
-                                </div>
-                                <div class="form-group">
-                                     {{ Form::label('Phone Number: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('phone_no', $retailer->phone_no ?? '', ['class' => 'form-control', 'name' => 'name', 'id' => 'name', 'placeholder' => 'Phone Number']) !!}
-                                   
-                                    <span class="md-line text-danger" id="icon_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Email Address: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('email', $retailer->email ?? '', ['class' => 'form-control',  'id' => 'email', 'placeholder' => 'Phone Number']) !!}
-                                    
-                                    <span class="md-line text-danger" id="banner_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Password: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('password', $retailer->password ?? '', ['class' => 'form-control',  'id' => 'password', 'placeholder' => 'Password']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Confirm_Password: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('confirm_password', $retailer->confirm_password ?? '', ['class' => 'form-control',  'id' => 'confirm_password', 'placeholder' => 'Confirm_Password']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
+                                        <div class="row">
+            <div class="col-xs-12 form-group">
+                {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                <p class="help-block"></p>
+                @if($errors->has('name'))
+                    <p class="help-block">
+                        {{ $errors->first('name') }}
+                    </p>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 form-group">
+                {!! Form::label('color', 'Color', ['class' => 'control-label']) !!}
+                {!! Form::text('color', old('color'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                <p class="help-block"></p>
+                @if($errors->has('color'))
+                    <p class="help-block">
+                        {{ $errors->first('color') }}
+                    </p>
+                @endif
+            </div>
+        </div>
+                                
                                 
                             
                             </div>
                             <div class="card-footer">
                                 
-                                {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_retailer']) !!}
+                                {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_color']) !!}
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -115,7 +113,7 @@
                     $('.ajax_loader').addClass('d-none');
                     if (result.success === true) {
                         toastr.success(result.msg);
-                        setTimeout(function(){window.location.href=baseUrl+"retailer"} , 5000);
+                        setTimeout(function(){window.location.href=baseUrl+"color"} , 5000);
                     } else {
                         toastr.error(result.msg);
                         console.log(result.msg);
@@ -133,6 +131,13 @@
         });
     });
 </script>
+@section('javascript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+    <script>
+        $('.colorpicker').colorpicker();
+    </script>
+@stop
+
 
 @endsection
 

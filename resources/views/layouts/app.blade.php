@@ -86,6 +86,7 @@
         <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
         <script>
 
+
 		$.ajaxSetup({
 			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 		});
@@ -93,6 +94,7 @@
 		var baseUrl = window.location.protocol + "//" + window.location.host+'/';
 
 </script> 
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         @yield('scripts')
     </body>
 

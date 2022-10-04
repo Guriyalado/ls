@@ -2,21 +2,19 @@
 
 namespace App\Repositories;
 // use App\Models\AuthCustomer;
-use App\Models\Retailer;
+use App\Models\Size;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 
 
-class RetailerRepository
+class SizeRepository
 {
 
     public function all()
     {
-        return Retailer::select(['id','retailer_name','phone_no','email','password','confirm_password'])->get();
+        return Size::select(['id','size'])->get();
     }
 
 
@@ -26,14 +24,10 @@ class RetailerRepository
 
           
 
-            $retailer= new Retailer();
-            $retailer->retailer_name= request()->corporate_name;
-            $retailer->phone_no= request()->phone_no;
-            $retailer->email= request()->email;
-            $retailer->password= request()->password;
-            $retailer->confirm_password= request()->confirm_password;
+            $size= new Size();
+            $size->size= request()->size;
            
-            $retailer->save();
+            $size->save();
         
            
             
@@ -44,9 +38,9 @@ class RetailerRepository
             if (request()->ajax()) {
                 $output = [
                     'success' => true,
-                    'data' =>  $retailer,
-                    'path' => '/retailer',
-                    'msg' => __("Retailer Information Added Success")
+                    'data' =>  $size,
+                    'path' => '/size',
+                    'msg' => __("Size Information Added Success")
                 ];
             } else {
                 $output = redirect()->back();
@@ -65,14 +59,11 @@ class RetailerRepository
      public function update($id)
     {
         try {
-            $retailer= Retailer::findOrFail($id);
-            $retailer->retailer_name= request()->corporate_name;
-            $retailer->phone_no= request()->phone_no;
-            $retailer->email= request()->email;
-            $retailer->password= request()->password;
-            $retailer->confirm_password= request()->confirm_password;
+            $size= Size::findOrFail($id);
+              $size->size= request()->size;
            
-            $retailer->save();
+            $size->save();
+           
             
             
 
@@ -81,8 +72,8 @@ class RetailerRepository
                 $output = [
                     'success' => true,
                     'data' => '',
-                    'path' => '/retailer',
-                    'msg' => __("Retailer Information Updated Success")
+                    'path' => '/size',
+                    'msg' => __("Size Information Updated Success")
                 ];
             } else {
                 $output = redirect()->back();
@@ -101,13 +92,13 @@ class RetailerRepository
     {
 
         try {
-             $retailer = Retailer::findOrFail($id);
-            
-             $retailer->delete();
+             $size = Size::findOrFail($id);
+             // $auth = AuthCustomer::where('id',$customer->customer_id)->delete();
+             $size->delete();
 
             $output = [
                 'success' => true,
-                'msg' => __("Retailer Deleted Success")
+                'msg' => __("Size Deleted Success")
             ];
         } catch (\Exception $e) {
             Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());

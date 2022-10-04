@@ -2,21 +2,21 @@
 
 namespace App\Repositories;
 // use App\Models\AuthCustomer;
-use App\Models\Retailer;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image;
+
 use Illuminate\Support\Facades\Storage;
 
 
-class RetailerRepository
+class ProductRepository
 {
 
     public function all()
     {
-        return Retailer::select(['id','retailer_name','phone_no','email','password','confirm_password'])->get();
+        return Product::select(['id','product_category','product_industry','product_name','product_price','product_size','product_descreption','color','use_case','discount','total_price'])->get();
     }
 
 
@@ -26,14 +26,18 @@ class RetailerRepository
 
           
 
-            $retailer= new Retailer();
-            $retailer->retailer_name= request()->corporate_name;
-            $retailer->phone_no= request()->phone_no;
-            $retailer->email= request()->email;
-            $retailer->password= request()->password;
-            $retailer->confirm_password= request()->confirm_password;
-           
-            $retailer->save();
+            $product= new Product();
+            $product->product_category= request()->product_category;
+            $product->product_industry= request()->product_industry;
+            $product->product_name= request()->product_name;
+            $product->product_price= request()->product_price;
+            $product->product_size= request()->product_size;
+            $product->product_descreption= request()->product_descreption;
+            $product->color= request()->color;
+            $product->use_case= request()->use_case;
+            $product->discount= request()->discount;
+            $product->total_price= request()->total_price;
+            $product->save();
         
            
             
@@ -44,9 +48,9 @@ class RetailerRepository
             if (request()->ajax()) {
                 $output = [
                     'success' => true,
-                    'data' =>  $retailer,
-                    'path' => '/retailer',
-                    'msg' => __("Retailer Information Added Success")
+                    'data' =>  $product,
+                    'path' => '/product',
+                    'msg' => __("Product Information Added Success")
                 ];
             } else {
                 $output = redirect()->back();
@@ -65,14 +69,19 @@ class RetailerRepository
      public function update($id)
     {
         try {
-            $retailer= Retailer::findOrFail($id);
-            $retailer->retailer_name= request()->corporate_name;
-            $retailer->phone_no= request()->phone_no;
-            $retailer->email= request()->email;
-            $retailer->password= request()->password;
-            $retailer->confirm_password= request()->confirm_password;
-           
-            $retailer->save();
+            $product= Product::findOrFail($id);
+            $product->product_category= request()->product_category;
+            $product->product_industry= request()->product_industry;
+            $product->product_name= request()->product_name;
+            $product->product_price= request()->product_price;
+            $product->product_size= request()->product_size;
+            $product->product_descreption= request()->product_descreption;
+            $product->color= request()->color;
+            $product->use_case= request()->use_case;
+            $product->discount= request()->discount;
+            $product->total_price= request()->total_price;
+            $product->save();
+        
             
             
 
@@ -81,8 +90,8 @@ class RetailerRepository
                 $output = [
                     'success' => true,
                     'data' => '',
-                    'path' => '/retailer',
-                    'msg' => __("Retailer Information Updated Success")
+                    'path' => '/product',
+                    'msg' => __("Product Information Updated Success")
                 ];
             } else {
                 $output = redirect()->back();
@@ -101,13 +110,13 @@ class RetailerRepository
     {
 
         try {
-             $retailer = Retailer::findOrFail($id);
-            
-             $retailer->delete();
+             $product = Product::findOrFail($id);
+             // $auth = AuthCustomer::where('id',$customer->customer_id)->delete();
+             $product->delete();
 
             $output = [
                 'success' => true,
-                'msg' => __("Retailer Deleted Success")
+                'msg' => __("Product Deleted Success")
             ];
         } catch (\Exception $e) {
             Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());

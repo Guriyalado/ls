@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    {{ 'Subject - Corporate' }}
+    {{ 'Subject - Size' }}
 @endsection
 @section('content')
   <!-- DataTables -->
@@ -12,14 +12,14 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h4 class="text-themecolor">Corporate</h4>
+                    <h4 class="text-themecolor">Size</h4>
                 </div> 
                 <div class="col-md-7 align-self-end text-right">
                     <div class="d-flex mt-4 justify-content-end align-items-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('corporate.index') }}">Corporate</a></li>
-                            <li class="breadcrumb-item active">Edit Corporate</li>
+                            <li class="breadcrumb-item"><a href="{{ route('size.index') }}">Size</a></li>
+                            <li class="breadcrumb-item active">Edit Size</li>
                         </ol>
 
 
@@ -40,7 +40,7 @@
                             </a>                           
                                                           
                         </div>
-                        {!! Form::open(['url' => action('App\Http\Controllers\Corporate\CorporateController@update', [$corporate->id]), 'method' => 'PUT', 'id' => 'ajax_form',  'enctype' => 'multipart/form-data' ]) !!}
+                        {!! Form::open(['url' => action('App\Http\Controllers\Size\SizeController@update', [$size->id]), 'method' => 'PUT', 'id' => 'ajax_form',  'enctype' => 'multipart/form-data' ]) !!}
                             
                             <div class="card-body">
                                 @php
@@ -48,48 +48,17 @@
                                 @endphp
                                 @csrf
                                 <div class="form-group">
-                                    {{ Form::label('Corporate name: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('corporate_name', $corporate->corporate_name ?? '', ['class' => 'form-control',   'placeholder' => 'Corporate name']) !!}
-                                    <span class="md-line text-danger" id="name_error"></span>
-                                </div>
-                                <div class="form-group">
-                                     {{ Form::label('Phone Number: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('phone_no', $corporate->phone_no ?? '', ['class' => 'form-control',   'id' => 'phone_no', 'placeholder' => 'Phone Number']) !!}
-                                   
-                                    <span class="md-line text-danger" id="icon_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Email Address: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('email', $corporate->email ?? '', ['class' => 'form-control',  'id' => 'email', 'placeholder' => 'Phone Number']) !!}
+                                    {{ Form::label('Size: *', null, ['class' => 'label text-black']) }}
+                                    {!! Form::text('size', $size->size ?? '', ['class' => 'form-control',  'id' => 'size', 'placeholder' => 'Size']) !!}
                                     
-                                    <span class="md-line text-danger" id="banner_error"></span>
                                 </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Password: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('password', $corporate->password ?? '', ['class' => 'form-control',  'id' => 'password', 'placeholder' => 'Password']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Confirm_Password: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('confirm_password', $corporate->confirm_password ?? '', ['class' => 'form-control',  'id' => 'confirm_password', 'placeholder' => 'Confirm_Password']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Company Name: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('company_name', $corporate->company_name ?? '', ['class' => 'form-control',  'id' => 'company_name', 'placeholder' => 'Company_name']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
-                                <div class="form-group ">
-                                     {{ Form::label('Company Address: *', null, ['class' => 'label text-black']) }}
-                                    {!! Form::text('company_address', $corporate->company_address ?? '', ['class' => 'form-control',  'id' => 'company_address', 'placeholder' => 'Company_address']) !!}
-                                    <span class="md-line text-danger" id="thumb_error"></span>
-                                </div>
+                                
                                 
                             
                             </div>
                             <div class="card-footer">
                                 
-                                {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_corporate']) !!}
+                                {!! Form::submit('Save', ['class' => 'btn btn-info waves-effect', 'id' => 'on_submit_size']) !!}
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -125,7 +94,7 @@
                     $('.ajax_loader').addClass('d-none');
                     if (result.success === true) {
                         toastr.success(result.msg);
-                        setTimeout(function(){window.location.href=baseUrl+"corporate"} , 5000);
+                        setTimeout(function(){window.location.href=baseUrl+"size"} , 5000);
                     } else {
                         toastr.error(result.msg);
                         console.log(result.msg);

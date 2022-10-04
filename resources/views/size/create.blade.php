@@ -9,11 +9,11 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {!! Form::open(['url' => action('App\Http\Controllers\Corporate\CorporateController@store'), 'method' => 'post', 'id' => 'ajax_form', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['url' => action('App\Http\Controllers\Size\SizeController@store'), 'method' => 'post', 'id' => 'ajax_form', 'enctype' => 'multipart/form-data']) !!}
         @php
             $form = 'create';
         @endphp
-        @include('corporate.form')
+        @include('size.form')
         {!! Form::close() !!}
     </div>
 </div>

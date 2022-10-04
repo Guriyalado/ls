@@ -46,18 +46,8 @@ class RetailerController extends Controller
 
                         $btn = $btn.'</div>';
                     return $btn;
-                })
-                ->editColumn('icon', function ($row) {
-                    return '<div style="display: flex;"><img src="'. $row->icon.'" width="50px" height="auto" alt="Product image" class="product-thumbnail-small"></div>';
-                })
-                ->editColumn('name', function ($row) {
-
-                    return  $row->name;
-                })
-                ->removeColumn('id')
-                ->rawColumns(['action', 'icon','name'])
-                ->make(true);
-        }
+                });
+               }
         return view('retailer.index');
     }
 
@@ -70,15 +60,7 @@ class RetailerController extends Controller
     public function create(Request $req)
     {
         
-        if (Auth::guard('web')->check()) {
-            if (!Auth::guard('web')->user()->can('retailer-create')) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            if (!Auth::guard('seller')->user()->can('retailer-create')) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
+       
         return view('retailer.create');
     }
 
@@ -93,17 +75,17 @@ class RetailerController extends Controller
         
 
         # code...
-        if (Auth::guard('web')->check()) {
-            if (!Auth::guard('web')->user()->can('retailer-create')) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            if (!Auth::guard('seller')->user()->can('retailer-create')) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
+        // if (Auth::guard('web')->check()) {
+        //     if (!Auth::guard('web')->user()->can('retailer-create')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // } else {
+        //     if (!Auth::guard('seller')->user()->can('retailer-create')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // }
         //dd($this->industry->store());
-        return $this->industry->store();
+        return $this->retailer->store();
     }
 
     /**
@@ -125,15 +107,15 @@ class RetailerController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::guard('web')->check()) {
-            if (!Auth::guard('web')->user()->can('retailer-update')) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            if (!Auth::guard('seller')->user()->can('retailer-update')) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
+        // if (Auth::guard('web')->check()) {
+        //     if (!Auth::guard('web')->user()->can('retailer-update')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // } else {
+        //     if (!Auth::guard('seller')->user()->can('retailer-update')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // }
         $retailer = Retailer::where('id', $id)->first();
         return view('retailer.edit')->with(compact('retailer'));
     }
@@ -149,15 +131,15 @@ class RetailerController extends Controller
     {
         
         # code...
-        if (Auth::guard('web')->check()) {
-            if (!Auth::guard('web')->user()->can('retailer-update')) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            if (!Auth::guard('seller')->user()->can('retailer-update')) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
+        // if (Auth::guard('web')->check()) {
+        //     if (!Auth::guard('web')->user()->can('retailer-update')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // } else {
+        //     if (!Auth::guard('seller')->user()->can('retailer-update')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // }
         return $this->retailer->update($id);
     }
 
@@ -170,17 +152,17 @@ class RetailerController extends Controller
     public function destroy($id)
     {
         
-        if (Auth::guard('web')->check()) {
-            if (!Auth::guard('web')->user()->can('retailer-delete')) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            if (!Auth::guard('seller')->user()->can('retailer-delete')) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
+        // if (Auth::guard('web')->check()) {
+        //     if (!Auth::guard('web')->user()->can('retailer-delete')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // } else {
+        //     if (!Auth::guard('seller')->user()->can('retailer-delete')) {
+        //         abort(403, 'Unauthorized action.');
+        //     }
+        // }
         if (request()->ajax()) {
-            return $this->industry->delete($id);
+            return $this->retailer->delete($id);
         }
     }
 

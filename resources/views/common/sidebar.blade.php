@@ -78,10 +78,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('industries.index') }}" class="nav-link">
+                    <a href="{{ route('corporate.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Corporate
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('product.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Product
                         </p>
                     </a>
                 </li>
@@ -103,6 +111,22 @@
                         <p>
                             Permissions
                             <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('size.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Size
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('color.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Color
                         </p>
                     </a>
                 </li>
